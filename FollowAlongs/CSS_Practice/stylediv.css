@@ -1,0 +1,15 @@
+.bluebox {
+    background-color:blue;
+    color: #FFFFFF; /*White*/
+    height:100px;
+}
+.greenbox {
+    background: rgba(0, 128, 0, 0.3);
+}
+.yellowbox {
+   background-color:yellow;
+}
+.blue {
+    color:blue;
+}
+
