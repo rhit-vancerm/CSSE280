@@ -1,0 +1,30 @@
+body {
+    background: #FFFFFF;
+}
+
+.navbar {
+    background-color: #800000;
+    color: white;
+}
+
+.page-container {
+    margin-top: 75px;
+}
+
+.button-group {
+    padding: 5vw;
+    text-align: center;
+}
+
+.button-group > button {
+    font-size: 1.5em;
+    margin:10px;
+    padding:10px;
+}
+
+#counterText{
+    color: black;
+    font-family: consolas, arial, sans-serif;
+    font-size: 4em;
+    text-align: center;
+}
