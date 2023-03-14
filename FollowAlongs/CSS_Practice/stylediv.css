@@ -1,15 +1,53 @@
 .bluebox {
-    background-color:blue;
-    color: #FFFFFF; /*White*/
-    height:100px;
-}
-.greenbox {
-    background: rgba(0, 128, 0, 0.3);
-}
-.yellowbox {
-   background-color:yellow;
-}
-.blue {
-    color:blue;
+    background-color: blue;
+    color: #FFFFFF;
+    /*White*/
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+    border: 10px ridge green;
+    border-radius: 80px;
+    margin: 50px;
 }
 
+.greenbox {
+    background-color: #006400;
+    /*green*/
+    color: #FFFF70;
+    /*light yellow*/
+    padding: 10px 20px 10px 30px;
+    border: 20px groove red;
+    margin: 10px;
+}
+
+.redbox {
+    background-color: #800000;
+    /*dark red*/
+    color: #00FFFF;
+    /*cyan*/
+    padding: 40px 50px;
+    border: 30px inset grey;
+    margin: 30px;
+    height: 100px;
+    background-origin: content-box;
+    /*background-image:url(https://img.freepik.com/free-vector/pattern-background-lineart-green-color_487879-550.jpg);*/
+    background-image: url(images/backgroundpattern.avif);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    outline-style: double;
+    outline-width: thick;
+    outline-color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+.great {
+    font-size: 300%;
+}
+
+p {
+    margin: 0;
+    background-color: #47478b;
+}
