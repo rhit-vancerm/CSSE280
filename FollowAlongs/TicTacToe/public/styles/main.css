@@ -1,0 +1,55 @@
+body {
+    background: #DDDDDD;
+}
+
+.navbar {
+    background-color: #800000;
+    color: white;
+}
+
+.page-container {
+    margin-top: 75px;
+}
+
+#gameStateText {
+    text-align: center;
+}
+
+.square {
+    background: #80000080;
+    color: white;
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 100px;
+    text-align: center;
+}
+
+.b-left {
+    border-left: 4px solid #000000;
+}
+.b-right {
+    border-right: 4px solid #000000;
+}
+.b-top {
+    border-top: 4px solid #000000;
+}
+.b-bottom {
+    border-bottom: 4px solid #000000;
+}
+
+#newGameButton {
+    margin-top: 15px;
+    background: #800000;
+    color: white;
+    margin-left: auto;
+}
+
+#gameBoard {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    grid-template-rows: 33.3%, 33.3%, 33.3%;
+    height: 300px;
+    width: 300px;
+}
+
