@@ -1,4 +1,3 @@
-
 var rhit = rhit || {};
 
 rhit.FB_COLLECTION_MOVIEQUOTE = "MovieQuotes";
@@ -7,8 +6,16 @@ rhit.FB_KEY_MOVIE = "movie";
 rhit.FB_KEY_LAST_TOUCHED = "lastTouched";
 rhit.fbMovieQuotesManager = null;
 
-rhit.ListPageController = class{
-	constructor(){
+//from stackoverflow
+function htmlToElement(html) {
+	var template = document.createElement('template');
+	html = html.trim();
+	template.innerHTML = html;
+	return template.content.firstChild;
+}
+
+rhit.ListPageController = class {
+	constructor() {
 		document.querySelector("#submitAddQuote").addEventListener("click", (event) => {
 			const quote = document.querySelector("#inputQuote").value;
 			const movie = document.querySelector("#inputMovie").value;
@@ -25,47 +32,77 @@ rhit.ListPageController = class{
 
 		rhit.fbMovieQuotesManager.beginListening(this.updateList.bind(this));
 	}
-	updateList(){
-		console.log("update list on page");
-		console.log(`num quotes = ${rhit.fbMovieQuotesManager.length}`);
+	updateList() {
+
+		const newList = htmlToElement('<div id="quoteListContainer"></div>');
+
+		for (let i = 0; i < rhit.fbMovieQuotesManager.length; i++) {
+			const mq = rhit.fbMovieQuotesManager.getMovieQuoteAtIndex(i);
+			const newCard = this._createCard(mq);
+
+			newCard.onclick = (event) =>{
+				rhit.storage.setMovieQuoteId(mq.id);
+				window.location.href = "/moviequote.html";
+			}
+
+			newList.appendChild(newCard);
+
+		}
+
+		const oldList = document.querySelector("#quoteListContainer");
+		oldList.removeAttribute("id");
+		oldList.hidden = true;
+
+		oldList.parentElement.appendChild(newList);
+
 	}
+
+	_createCard(movieQuote) {
+		return htmlToElement(`<div class="card">
+        <div class="card-body">
+          <h5 class="card-title">${movieQuote.quote}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">${movieQuote.movie}</h6>
+        </div>
+      </div>`);
+	}
+
 }
 
-rhit.MovieQuote = class{
-	constructor(id, quote, movie){
+rhit.MovieQuote = class {
+	constructor(id, quote, movie) {
 		this.id = id;
 		this.quote = quote;
 		this.movie = movie;
 	}
 }
 
-rhit.FbMovieQuotesManager = class{
-	constructor(){
+rhit.FbMovieQuotesManager = class {
+	constructor() {
 		console.log("created fbmoviequotesmanager");
 		this._documentSnapshots = [];
 		this._ref = firebase.firestore().collection(rhit.FB_COLLECTION_MOVIEQUOTE);
 		this._unsubscribe = null;
 	}
-	add(quote, movie){
+	add(quote, movie) {
 		this._ref.add({
-			[rhit.FB_KEY_QUOTE]: quote,
-			[rhit.FB_KEY_MOVIE]: movie,
-			[rhit.FB_KEY_LAST_TOUCHED]: firebase.firestore.Timestamp.now(),
-		})
-		.then(function (docRef) {
-			console.log("doc written with id: ", docRef.id);
-		})
-		.catch(function (error){
-			console.error("error adding doc: ", error);
-		});
+				[rhit.FB_KEY_QUOTE]: quote,
+				[rhit.FB_KEY_MOVIE]: movie,
+				[rhit.FB_KEY_LAST_TOUCHED]: firebase.firestore.Timestamp.now(),
+			})
+			.then(function (docRef) {
+				console.log("doc written with id: ", docRef.id);
+			})
+			.catch(function (error) {
+				console.error("error adding doc: ", error);
+			});
 	}
-	beginListening(changeListener){
-		this._unsubscribe = this._ref.onSnapshot((querySnapshot) => {
+	beginListening(changeListener) {
+		this._unsubscribe = this._ref.orderBy(rhit.FB_KEY_LAST_TOUCHED, "desc").limit(50).onSnapshot((querySnapshot) => {
 			this._documentSnapshots = querySnapshot.docs;
 			changeListener();
 		});
 	}
-	stopListening(){
+	stopListening() {
 		this._unsubscribe();
 	}
 	// update(id, quote, movie){
@@ -74,10 +111,10 @@ rhit.FbMovieQuotesManager = class{
 	// delete(id){
 
 	// }
-	get length(){
+	get length() {
 		return this._documentSnapshots.length;
 	}
-	getMovieQuoteAtIndex(index){
+	getMovieQuoteAtIndex(index) {
 		const docSnapshot = this._documentSnapshots[index];
 		const mq = new rhit.MovieQuote(
 			docSnapshot.id,
@@ -89,26 +126,40 @@ rhit.FbMovieQuotesManager = class{
 	}
 }
 
+rhit.storage = rhit.storage || {};
+rhit.storage.MOVIEQUOTE_ID_KEY = "movieQuoteId";
+rhit.storage.getMovieQuoteId = function(){
+	const mqId = sessionStorage.getItem(rhit.storage.MOVIEQUOTE_ID_KEY);
+	if(!mqId){
+		console.log("No movie quote id in sessionStorage!");
+	}
+	return mqId;
+};
+rhit.storage.setMovieQuoteId = function(movieQuoteId){
+	sessionStorage.setItem(rhit.storage.MOVIEQUOTE_ID_KEY, movieQuoteId);
+};
+
 /* Main */
 /** function and class syntax examples */
 rhit.main = function () {
 	console.log("Ready");
 
-	if(document.querySelector("#listPage")){
+	if (document.querySelector("#listPage")) {
 		console.log("list page");
 		rhit.fbMovieQuotesManager = new rhit.FbMovieQuotesManager();
 		new rhit.ListPageController();
 	}
 
-	if(document.querySelector("#detailPage")){
+	if (document.querySelector("#detailPage")) {
 		console.log("detail page");
+		console.log(`Detail page for ${rhit.storage.getMovieQuoteId()}`);
 	}
-	
+
 
 	// //temp code
 	// const ref = firebase.firestore().collection("MovieQuotes");
 	// ref.onSnapshot((querySnapshot) => {
-		
+
 	// 	querySnapshot.forEach((doc) => {
 	// 		console.log(doc.data());
 	// 	});
@@ -120,7 +171,7 @@ rhit.main = function () {
 	// 	movie: "My first movie"
 	// });
 
-	
+
 
 };
 
