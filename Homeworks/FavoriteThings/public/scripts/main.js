@@ -1,36 +1,43 @@
-/**
- * @fileoverview
- * Provides the JavaScript interactions for all pages.
- *
- * @author 
- * PUT_YOUR_NAME_HERE
- */
 
-/** namespace. */
 var rhit = rhit || {};
 
 /** globals */
-rhit.variableName = "";
+rhit.counter = 0;
 
-/** function and class syntax examples */
-rhit.functionName = function () {
-	/** function body */
-};
-
-rhit.ClassName = class {
-	constructor() {
-
+rhit.updateCounter = (amount, isMult) => {
+	if(isMult){
+		rhit.counter *= amount;
 	}
-
-	methodName() {
-
+	else{
+		rhit.counter += amount;
 	}
+	$("#counter").html(rhit.counter);
 }
 
-/* Main */
-/** function and class syntax examples */
+rhit.updateColor = (color) => {
+	$("#favoriteColorBox").html(color)
+	document.getElementById("favoriteColorBox").style.backgroundColor = color;
+}
+
 rhit.main = function () {
 	console.log("Ready");
+	
+	$("#counterButtons button").click((event) => {
+
+		const dataAmount = $(event.target).data("amount");
+		const dataIsMultiplication = !!$(event.target).data("isMultiplication");
+
+		rhit.updateCounter(dataAmount, dataIsMultiplication);
+	});
+
+	$("#colorButtons button").click((event) => {
+		
+		const dataColor = $(event.target).data("color");
+
+		rhit.updateColor(dataColor);
+
+	})
+
 };
 
 rhit.main();

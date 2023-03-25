@@ -10,3 +10,59 @@ body {
 .page-container {
     margin-top: 75px;
 }
+
+.no-gutters>.col, 
+.no-gutters>[class*=col-] {
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+#counterText,
+#colorText{
+    font-size: 3em;
+}
+
+#counter{
+    font-size:3em;
+    text-align: center;
+}
+
+.counterButton{
+    background-color: #800000 !important;
+    color:#DDDDDD !important;
+    border-radius:6px;
+}
+
+#favoriteColorContainer{
+    width: 200px;
+    margin: 20px;
+}
+
+#favoriteColorBox{
+    background-color:#800000;
+    line-height:100px;
+    text-align:center;
+    color:white;
+}
+
+.colorButton{
+    color:#DDDDDD !important;
+    border-radius:6px;
+}
+
+#blueButton{
+    background-color: blue !important;
+}
+
+#greenButton{
+    background-color: green !important;
+}
+
+#redButton{
+    background-color: red !important;
+}
+
+#purpleButton{
+    background-color: purple !important;
+}
+

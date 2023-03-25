@@ -7,21 +7,60 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
   <link rel="stylesheet" href="styles/bootstrap-material-design.min.css">
   <link rel="stylesheet" href="styles/main.css">
-  <title>App Name</title>
+  <title>Favorite Things</title>
 </head>
 
 <body>
   <nav class="navbar navbar-dark fixed-top">
-    <a class="navbar-brand" href="#">App Name</a>
+    <a class="navbar-brand" href="#">Favorite Things</a>
   </nav>
   <div id="mainPage" class="container page-container">
 
+    <hr>
+    <div id="counterText">Favorite Number:</div>
+    <div id="counter">0</div>
+    <div id="counterButtons" class="row justify-content-center">
+      <div class="col-sm col-md-2">
+        <button type="button" data-amount="-1" class="btn btn-block counterButton">-1</button>
+      </div>
+      <div class="col-sm col-md-2">
+        <button type="button" data-amount="0" data-is-multiplication="true"
+          class="btn btn-block counterButton">RESET</button>
+      </div>
+      <div class="col-sm col-md-2">
+        <button type="button" data-amount="1" class="btn btn-block counterButton">+1</button>
+      </div>
+    </div>
+    <hr>
+    <div id="colorText">Favorite Color:</div>
+    <div id="favoriteColorContainer" class="mx-auto">
+      <div id="favoriteColorBox">
+        #80000
+      </div>
+    </div>
+    <div id="colorButtons" class="row no-gutters justify-content-center">
+      <div class="col-sm col-md-2">
+        <button id="blueButton" type="button" data-color="blue" class="btn btn-block colorButton">Blue</button>
+      </div>
+      <div class="col-sm col-md-2">
+        <button id="greenButton" type="button" data-color="green" class="btn btn-block colorButton">Green</button>
+      </div>
+      <div class="col-sm col-md-2">
+        <button id="redButton" type="button" data-color="red" class="btn btn-block colorButton">Red</button>
+      </div>
+      <div class="col-sm col-md-2">
+        <button id="purpleButton" type="button" data-color="purple" class="btn btn-block colorButton">Purple</button>
+      </div>
+    </div>
+    <hr>
 
   </div>
   <script src="scripts/jquery.min.js"></script>
   <script src="scripts/popper.js"></script>
   <script src="scripts/bootstrap-material-design.js"></script>
-  <script>$("body").bootstrapMaterialDesign();</script>
+  <script>
+    $("body").bootstrapMaterialDesign();
+  </script>
   <script src="/__/firebase/7.18.0/firebase-app.js"></script>
   <script src="/__/firebase/7.18.0/firebase-analytics.js"></script>
   <script src="/__/firebase/7.18.0/firebase-auth.js"></script>
