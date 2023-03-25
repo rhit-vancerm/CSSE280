@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "vancerm-favoritethings.web.app",
+    "site": "vancerm-favoritethings",
     "public": "public",
     "ignore": [
       "firebase.json",
