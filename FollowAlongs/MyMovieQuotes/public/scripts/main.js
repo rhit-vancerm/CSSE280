@@ -322,9 +322,9 @@ rhit.checkForRedirects = function(){
 	if (document.querySelector("#loginPage") && rhit.fbAuthManager.isSignedIn) {
 		window.location.href = "/list.html";
 	}
-	// if (!document.querySelector("#loginPage") && !rhit.fbAuthManager.isSignedIn) {
-	// 	window.location.href = "/";
-	// }
+	if (!document.querySelector("#loginPage") && !rhit.fbAuthManager.isSignedIn) {
+		window.location.href = "/";
+	}
 }
 
 rhit.initializePage = function(){
