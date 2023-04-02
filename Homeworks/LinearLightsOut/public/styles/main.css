@@ -10,3 +10,49 @@ body {
 .page-container {
     margin-top: 75px;
 }
+
+#gameText{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 120px;
+    margin-bottom: 30px;
+    font-size: 25px;
+}
+
+@media (min-width: 576px) {
+    #gameText, .btn{font-size: 37.5px}
+}
+
+@media (min-width: 992px) {
+    #gameText, .btn{font-size: 50px;}
+}
+
+#flexbox{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:10px;
+    height: 90px;
+}
+
+.game-button{
+    background-color: #F6BE00;
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+    border-radius: 5px;
+    width: 60px;
+}
+
+#newGameButton{
+    background-color: #800000;
+    font-size:25px;
+    color:white;
+    border-radius: 5px;
+    margin-left:auto;
+    text-transform: unset !important;
+    display:block;
+    margin-left:auto;
+    margin-right: 15vw;
+    margin-top: 30px;
+}
