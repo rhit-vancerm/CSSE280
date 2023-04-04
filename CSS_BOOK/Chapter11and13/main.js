@@ -62,3 +62,23 @@ fetch(url)
 
 const headers = new Headers();
 // has(), get(), append(), delete()
+
+//async
+async function functionName() {
+    //const var = await afn();
+
+}
+
+//promises
+//future result of async operation
+
+const promise = new Promise((resolve, reject) => {
+    if(success){
+        resolve(value);
+    }
+    else{
+        reject(error)
+    }
+})
+
+
