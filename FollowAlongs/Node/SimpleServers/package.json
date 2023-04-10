@@ -4,12 +4,13 @@
   "description": "using no express server",
   "main": "noExpress.js",
   "scripts": {
-    "start": "node noExpress.js",
+    "start": "nodemon expressServer.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.2",
     "nodemon": "^2.0.22",
     "underscore": "^1.13.6"
   }
