@@ -4,9 +4,9 @@ html
         link(rel="stylesheet" href="/static/styles/main.css")
     body 
         div.button-group 
-            button#decButton Decrement
+            button#decrementButton Decrement
             button#resetButton Reset 
-            button#incButton Increment 
+            button#incrementButton Increment 
             hr
             form(action='/pug/hello', method='POST', onSubmit='saveCurrentValue()')
                 input(id="saveCounter" type="hidden", name="count", value="")
